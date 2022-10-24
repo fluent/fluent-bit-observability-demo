@@ -14,8 +14,8 @@ We instrument an application using OpenTelemetry and send the trace data to Flue
 
 1. Clone the repo and navigate to the directory
 ```
-git clone https://github.com/Syn3rman/fluentbit-metrics-demo.git
-cd fluentbit-metrics-demo
+git clone https://github.com/fluent/fluent-bit-observability-demo.git
+cd fluent-bit-observability-demo
 ```
 
 2. Run `docker-compose up -d --build` to start the application

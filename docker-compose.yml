@@ -1,0 +1,55 @@
+version: '3.3'
+
+services:
+  demo_app:
+    build:
+      context: app
+    depends_on:
+      - fluentbit
+      - jaeger
+
+  fluentbit:
+    build:
+      context: fluentbit
+    ports:
+      - "8080:8080"
+      - "2021:2021"
+    restart: always
+    depends_on:
+      jaeger:
+        condition: service_started
+      prometheus:
+        condition: service_started
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    restart: always
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.35
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+      - "4318:4318"
+      - "14269:14269"
+
+volumes:
+  prometheus-data:
+  grafana-storage:

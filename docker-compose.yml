@@ -20,6 +20,8 @@ services:
         condition: service_started
       prometheus:
         condition: service_started
+      collector:
+        condition: service_started
 
   prometheus:
     image: prom/prometheus
@@ -49,6 +51,14 @@ services:
       - "4317:4317"
       - "4318:4318"
       - "14269:14269"
+
+  collector:
+    image: otel/opentelemetry-collector
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./collector/logs.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "3030:3030"
 
 volumes:
   prometheus-data:

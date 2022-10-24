@@ -1,0 +1,17 @@
+{
+  "name": "fb_demo_metrics",
+  "version": "1.0.0",
+  "description": "kubecon demo for fluentbit metric support",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sy3nrman",
+  "license": "ISC",
+  "dependencies": {
+    "@opentelemetry/api": "^1.1.0",
+    "@opentelemetry/exporter-metrics-otlp-http": "^0.28.0",
+    "@opentelemetry/exporter-metrics-otlp-proto": "^0.28.0",
+    "@opentelemetry/exporter-trace-otlp-proto": "^0.33.0"
+  }
+}

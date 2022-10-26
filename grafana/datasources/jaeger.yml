@@ -1,7 +1,9 @@
+---
 apiVersion: 1
 datasources:
 - orgId: 1
   version: 2
+  uid: jaeger-docker-compose
   name: Jaeger
   type: jaeger
   access: proxy

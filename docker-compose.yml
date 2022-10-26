@@ -41,6 +41,8 @@ services:
     volumes:
       - grafana-storage:/var/lib/grafana
       - ./grafana/datasources/:/etc/grafana/provisioning/datasources/
+      - ./grafana/dashboards/:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboard-files/:/docker-compose/dashboards/
     restart: always
 
   jaeger:

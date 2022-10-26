@@ -11,9 +11,6 @@ services:
   fluentbit:
     build:
       context: fluentbit
-    ports:
-      - "8080:8080"
-      - "2021:2021"
     restart: always
     depends_on:
       jaeger:
@@ -25,8 +22,6 @@ services:
 
   prometheus:
     image: prom/prometheus
-    ports:
-      - "9090:9090"
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus-data:/prometheus
@@ -49,19 +44,12 @@ services:
     image: jaegertracing/all-in-one:1.35
     environment:
       - COLLECTOR_OTLP_ENABLED=true
-    ports:
-      - "16686:16686"
-      - "4317:4317"
-      - "4318:4318"
-      - "14269:14269"
 
   collector:
     image: otel/opentelemetry-collector
     command: ["--config=/etc/otel-collector-config.yaml"]
     volumes:
       - ./collector/logs.yaml:/etc/otel-collector-config.yaml
-    ports:
-      - "3030:3030"
 
   vivo:
     image: ghcr.io/calyptia/vivo

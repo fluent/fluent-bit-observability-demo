@@ -1,4 +1,4 @@
-FROM pwhelan/fluent-bit:2.0.0
+FROM pwhelan/fluent-bit:2.0.0-demo
 ENV DEBIAN_FRONTEND noninteractive
 # RUN cmake -DFLB_CONFIG_YAML=Off ../
 WORKDIR /fb

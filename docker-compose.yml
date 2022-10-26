@@ -63,6 +63,14 @@ services:
     ports:
       - "3030:3030"
 
+  vivo:
+    image: ghcr.io/calyptia/vivo
+    environment:
+      - VIVO_TOKEN=changemeuig4phooch1theeheeneishahlarood5eiveiDeezie2eeng5IY4Doh4chee7eeB
+    ports:
+      - "5489:5489"
+      - "24224:24224"
+
 volumes:
   prometheus-data:
   grafana-storage:

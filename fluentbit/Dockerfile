@@ -1,16 +1,6 @@
-FROM ubuntu:20.04
+FROM fluent/fluent-bit:2.0.0
 ENV DEBIAN_FRONTEND noninteractive
-WORKDIR /fb
-RUN apt-get update
-RUN apt-get install -y git
-RUN git clone https://github.com/fluent/fluent-bit.git
-WORKDIR /fb/fluent-bit
-RUN apt-get install -y build-essential make cmake g++ flex bison libssl-dev
-WORKDIR /fb/fluent-bit/build
-RUN cmake -DFLB_CONFIG_YAML=Off ../
-RUN make
-RUN make install
+# RUN cmake -DFLB_CONFIG_YAML=Off ../
 WORKDIR /fb
 COPY ./fluent.conf .
-WORKDIR /fb/fluent-bit/build
-CMD ["bin/fluent-bit", "-c", "/fb/fluent.conf"]
+CMD ["/fluent-bit/bin/fluent-bit", "-c", "/fb/fluent.conf"]

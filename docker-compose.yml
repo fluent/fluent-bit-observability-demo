@@ -40,6 +40,9 @@ services:
       - "3000:3000"
     volumes:
       - grafana-storage:/var/lib/grafana
+      - ./grafana/datasources/:/etc/grafana/provisioning/datasources/
+      - ./grafana/dashboards/:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboard-files/:/docker-compose/dashboards/
     restart: always
 
   jaeger:
@@ -59,6 +62,14 @@ services:
       - ./collector/logs.yaml:/etc/otel-collector-config.yaml
     ports:
       - "3030:3030"
+
+  vivo:
+    image: ghcr.io/calyptia/vivo
+    environment:
+      - VIVO_TOKEN=changemeuig4phooch1theeheeneishahlarood5eiveiDeezie2eeng5IY4Doh4chee7eeB
+    ports:
+      - "5489:5489"
+      - "24224:24224"
 
 volumes:
   prometheus-data:

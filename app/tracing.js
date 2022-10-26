@@ -45,15 +45,15 @@ provider.register();
 const tracer = trace.getTracer('example-otlp-exporter-node');
 
 // Create a span
-const parentSpan = tracer.startSpan('main');
-for (let i = 0; i < 10; i += 1) {
-  doWork(parentSpan);
-}
-parentSpan.end();
+setInterval(() => {
+  const parentSpan = tracer.startSpan('main');
+  for (let i = 0; i < 10; i += 1) {
+    doWork(parentSpan);
+  }
+  parentSpan.end();
+}, 5000);
 
-setTimeout(() => {
-  exporter.shutdown();
-}, 3000);
+//exporter.shutdown();
 
 function doWork(parent) {
   // Start a child span
